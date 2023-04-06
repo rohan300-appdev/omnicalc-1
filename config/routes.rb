@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   get("random/new", {:controller => "application", :action => "rand_blank"})
   get("random/results", {:controller => "application", :action => "rand_results"})
 
+  get("/square_root/new", {:controller => "application", :action => "sq_root_blank"})
+  get("/square_root/results", {:controller => "application", :action => "sq_root_results"})
+
 end

@@ -20,4 +20,14 @@ class ApplicationController < ActionController::Base
     @num = rand(@min..@max)
     render({:template => "forms/rand_results.html.erb"})
   end
+
+  def sq_root_blank
+    render({:template => "forms/sq_root_blank.html.erb"})
+  end
+
+  def sq_root_results
+    @num = params['input']
+    @square_root = @num.to_f ** 0.5
+    render({:template => "forms/sq_root_results.html.erb"})
+  end
 end
