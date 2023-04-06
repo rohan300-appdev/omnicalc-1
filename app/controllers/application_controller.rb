@@ -5,8 +5,19 @@ class ApplicationController < ActionController::Base
   end
 
   def calculate_square
-    @num = params["input"]
-    @square = @num.to_f ** 2
+    @num = params["input"].to_f
+    @square = @num ** 2
     render({:template => "forms/square_results.html.erb"})
+  end
+
+  def rand_blank
+    render({:template => "forms/rand_blank.html.erb"})
+  end
+
+  def rand_results
+    @min = params["min"].to_f
+    @max = params["max"].to_f
+    @num = rand(@min..@max)
+    render({:template => "forms/rand_results.html.erb"})
   end
 end
