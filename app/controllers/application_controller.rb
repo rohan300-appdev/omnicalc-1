@@ -30,4 +30,23 @@ class ApplicationController < ActionController::Base
     @square_root = @num.to_f ** 0.5
     render({:template => "forms/sq_root_results.html.erb"})
   end
+
+  def pay_blank
+    render({:template => "forms/pay_blank.html.erb"})
+  end
+
+  def pay_results
+    @apr = params['apr'].to_f.round(4)
+    @years = params['years'].to_i
+    @pri = params['pri'].gsub(',','').to_f
+    i = (@apr/100)/12
+    n = @years * 12
+
+    @payment = (@pri * i) / (1- (1 + i) **(-n))
+
+    @pri = @pri.round(2).to_s(:currency)
+    @payment = @payment.round(2).to_s(:currency)
+    @apr = (@apr).to_s(:percentage, { :precision => 4 })
+    render({:template => "forms/pay_results.html.erb"})
+  end
 end
